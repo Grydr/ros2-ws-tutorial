@@ -22,6 +22,10 @@ add_executable(simple_pub src/pub.cpp)
 target_link_libraries(simple_pub PUBLIC fib)
 ament_target_dependencies(simple_pub PUBLIC rclcpp std_msgs)
 
+add_executable(pub_with_param src/pubWithParam.cpp)
+target_link_libraries(pub_with_param PUBLIC fib)
+ament_target_dependencies(pub_with_param PUBLIC rclcpp std_msgs)
+
 add_executable(simple_sub src/sub.cpp)
 ament_target_dependencies(simple_sub PUBLIC rclcpp std_msgs)
 
@@ -32,7 +36,8 @@ add_executable(sub_custom_msg src/subCustomMsg.cpp)
 ament_target_dependencies(sub_custom_msg PUBLIC rclcpp simple_interfaces)
 
 install(
-  TARGETS simple_pub simple_sub pub_custom_msg sub_custom_msg
+  TARGETS 
+  simple_pub pub_custom_msg simple_sub pub_custom_msg sub_custom_msg
   DESTINATION lib/${PROJECT_NAME}
 )
 

@@ -10,12 +10,13 @@ using std_msgs::msg::String;
 class SimpleSubscriber : public rclcpp::Node {
 public:
     SimpleSubscriber() : Node("simple_subscriber") {
-        m_sub = this->create_subscription<String>("simple_pub", 10, [this](String::SharedPtr msg){ callback(msg); });
+        m_sub = this->create_subscription<String>("simple_pub", 10, 
+                                                std::bind(&SimpleSubscriber::callback, this, _1));
     }
 
 private:
-    void callback(const String::SharedPtr msg) {
-        RCLCPP_INFO(this->get_logger(), "Received: '%s'", msg->data.c_str());
+    void callback(const String &msg) {
+        RCLCPP_INFO(this->get_logger(), "Received: '%s'", msg.data.c_str());
     }
 
 private:

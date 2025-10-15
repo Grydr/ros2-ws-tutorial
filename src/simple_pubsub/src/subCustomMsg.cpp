@@ -14,8 +14,8 @@ public:
     }
 
 private:
-    void subCallback(const Num::SharedPtr msg) {
-        RCLCPP_INFO(this->get_logger(), "Received Num: %ld", msg->num);
+    void subCallback(const Num &msg) {
+        RCLCPP_INFO(this->get_logger(), "Received Num: %ld", msg.num);
     }
 
 private:
